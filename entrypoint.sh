@@ -101,6 +101,10 @@ git fetch fork $HEAD_BRANCH
 # do the rebase
 git checkout -b fork/$HEAD_BRANCH fork/$HEAD_BRANCH
 if [[ $INPUT_AUTOSQUASH == 'true' ]]; then
+	# GIT_EDITORとGIT_SEQUENCE_EDITORの設定値を出力する
+	echo "GIT_EDITOR=$GIT_EDITOR"
+	echo "GIT_SEQUENCE_EDITOR=$GIT_SEQUENCE_EDITOR"
+
 	GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash origin/$BASE_BRANCH
 else
 	git rebase origin/$BASE_BRANCH
